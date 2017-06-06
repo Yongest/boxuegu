@@ -2,10 +2,9 @@ define(['jquery'], function($) {
 	
 	// 监听表单提交事件，并阻止，转而变成ajax请求
 	$('#login-form').on('submit', function() {
-		
 		// 这里的this是form原生对象，对form进行包装，才可以调用jq的法方法
-//		console.log($(this).serialize());
-//		console.log($(this).serializeArray());
+		// console.log($(this).serialize());//需要表单中有name属性,不然打印出来的是空值
+		// console.log($(this).serializeArray());
 		
 		// 发送ajax请求，页面不用刷新
 		$.ajax({
@@ -16,7 +15,7 @@ define(['jquery'], function($) {
 			success: function(data) {
 				if(data.code == 200) {
 					location.href = '/';
-				}
+				}			
 			},
 			// 请求失败给出错误提示
 			error: function() {
