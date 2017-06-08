@@ -1,5 +1,5 @@
 // 其中下面的undefined代表一个占位符,表示木有返回值.而jqueryCookie所有的方法不是在jquery原型上就是在其自己上面
-define(['jquery','jqueryCookie','nprogress'], function ($,undefined,nprogress) {
+define(['jquery','jqueryCookie','nprogress','loading'], function ($,undefined,nprogress,undefined) {
 
 //登录校验
 (function(){

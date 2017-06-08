@@ -37,13 +37,13 @@ define(['jquery', 'jqueryCookie'], function ($, undefined) {
         }
     })();
 
-    //二.loading功能
+    //二.jax-loading功能
 
-    (function () {
-        $(document).on('ajaxStart',function(){
-            $('.overlay').show();
-        }).on('ajaxStop',function(){
-            $('.overlay').hide();
-        })
-    })();
+    // (function () {
+    //     $(document).on('ajaxStart',function(){
+    //         $('.overlay').show();
+    //     }).on('ajaxStop',function(){
+    //         $('.overlay').hide();
+    //     })
+    // })();
 });
