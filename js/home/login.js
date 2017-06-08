@@ -23,6 +23,8 @@ define(['jquery','jqueryCookie','nprogress'], function ($,undefined,nprogress) {
 				// 请求成功跳转到首页
 				success: function (data) {
 					if (data.code == 200) {
+						//保存登录成功得到的头像以及用户名
+						$.cookie('userInfo',JSON.stringify(data.result),{path:'/'})
 						location.href = '/';
 					}
 				},

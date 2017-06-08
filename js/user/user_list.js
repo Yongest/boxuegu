@@ -1,3 +1,3 @@
-define(['header'], function(undefined) {
+define(['header','aside'], function(undefined,undefined) {
 	
 });

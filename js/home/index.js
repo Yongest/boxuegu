@@ -1,4 +1,4 @@
-define(['jquery','common','header','nprogress'], function($,undefined,undefined,nprogress) {
+define(['jquery','common','header','aside','nprogress'], function($,undefined,undefined,undefined,nprogress) {
     // $.ajax({
     //     type:'post',
     //     // url:'http://api.botue.com/v6/login',
