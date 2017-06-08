@@ -26,6 +26,9 @@ define([], function () {
 			teacherList: 'js/teacher/teacher_list',
 			userProfile: 'js/user/user_profile',
 			userList: 'js/user/user_list',
+			common: 'js/common/common',
+			aside: 'js/common/aside',
+			header: 'js/common/header',
 
 			// 配置第三方js模块别名
 			template: 'lib/artTemplate/template-debug',
@@ -51,7 +54,10 @@ define([], function () {
 
 	});
 
-
+	//所有的页面只要main.js加载完毕,那么就优先加载进度条插件.
+	require(['nprogress'],function(nprogress){
+		nprogress.start();
+	})
 	// 根据页面加载对应的js模块
 	var pathname = location.pathname;
 
