@@ -12,27 +12,38 @@
 
 // jqueryCookie是define定义的,依赖于jquery,下面define()中的jquery可以省略,
 //像bootstrap是非define定义的,需要shim配置.
-define(['jquery','jqueryCookie'],function($,undefined){
+define(['jquery', 'jqueryCookie'], function ($, undefined) {
+    //一,登录跳转功能
+    (function () {
+        // 方法一:原生js
+        // var cookie = document.cookie.split('; ');
+        // //利用中间变量
+        // var isLogin = false;
+        // for(var i = 0,len=cookie.length;i<len;i++){
+        //     //存在怎么登录过
+        //     if(cookie[i].indexOf('PHPSESSID=')===0){
+        //         isLogin = true;
+        //         //存在了,则结束循环,不能用return,因为return后面的代码都不会执行了.
+        //         break;
+        //     }
+        // }
+        // //若没有登录过,则返回登录页面.
+        // //右边是赋值,要用括号包裹起来.
+        // !isLogin && (location.href = 'http://boxuegu.com/html/home/login.html' )
 
-    // 方法一:原生js
-    // var cookie = document.cookie.split('; ');
-    // //利用中间变量
-    // var isLogin = false;
-    // for(var i = 0,len=cookie.length;i<len;i++){
-    //     //存在怎么登录过
-    //     if(cookie[i].indexOf('PHPSESSID=')===0){
-    //         isLogin = true;
-    //         //存在了,则结束循环,不能用return,因为return后面的代码都不会执行了.
-    //         break;
-    //     }
-    // }
-    // //若没有登录过,则返回登录页面.
-    // //右边是赋值,要用括号包裹起来.
-    // !isLogin && (location.href = 'http://boxuegu.com/html/home/login.html' )
+        // 方法二:利用jquery-cookie
+        if (!$.cookie('PHPSESSID')) {
+            location.href = 'http://boxuegu.com/html/home/login.html';
+        }
+    })();
 
-    // 方法二:利用jquery-cookie
-    if(!$.cookie('PHPSESSID')){
-        location.href = 'http://boxuegu.com/html/home/login.html';
-    }
+    //二.loading功能
 
+    (function () {
+        $(document).on('ajaxStart',function(){
+            $('.overlay').show();
+        }).on('ajaxStop',function(){
+            $('.overlay').hide();
+        })
+    })();
 });
