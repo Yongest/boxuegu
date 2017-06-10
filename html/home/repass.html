@@ -17,17 +17,17 @@
             <!-- 修改密码 -->
             <div class="body">
                 <div class="repass">
-                    <form action="" class="form-horizontal col-xs-offset-2">
+                    <form id="change-pass" action="/v6/teacher/repass" method="post" class="form-horizontal col-xs-offset-2">
                         <div class="form-group">
-                            <label for="" class="col-xs-3 control-label">原密码</label>
+                            <label for=""  class="col-xs-3 control-label">原密码</label>
                             <div class="col-xs-4">
-                                <input type="text" class="form-control input-sm">
+                                <input type="text" name="tc_pass" value="" class="form-control input-sm">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-xs-3 control-label">新密码</label>
+                            <label for=""  class="col-xs-3 control-label">新密码</label>
                             <div class="col-xs-4">
-                                <input type="password" class="form-control input-sm">
+                                <input type="password" name="tc_new_pass" value="" class="form-control input-sm">
                             </div>
                         </div>
                         <div class="form-group">
