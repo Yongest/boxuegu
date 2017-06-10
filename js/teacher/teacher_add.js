@@ -1,4 +1,4 @@
-define(['aside', 'header', 'nprogress', 'jquery', 'loading','template'], function(undefined, undefined, nprogress, $, undefined,template) {
+define(['aside', 'header', 'nprogress', 'jquery', 'loading','template','jqueryForm'], function(undefined, undefined, nprogress, $, undefined,template,undefined) {
     /**
      * 这里的js作用于两个页面,一个是添加讲师页面,一个是编辑讲师页面
      * 1.获取页面查询字符串
@@ -29,11 +29,16 @@ define(['aside', 'header', 'nprogress', 'jquery', 'loading','template'], functio
     function teacherAdd(){
         //把模板添加到坑中,因为是添加,只要传入一个空对象就可以,又因为是动态生成的表单,所有用事件委托的方式.
          $('.teacher').html(template('teacher-add-edit-tpl',{}));
-        $(document).on('submit','#teacher-add-edit',function(){
-            $.post('/v6/teacher/add',$(this).serialize(),function(data){
-                 location.href = '/html/teacher/teacher_list.html';
-            })
-            return false;
+        // $(document).on('submit','#teacher-add-edit',function(){
+        //     $.post('/v6/teacher/add',$(this).serialize(),function(data){
+        //          location.href = '/html/teacher/teacher_list.html';
+        //     })
+        //     return false;
+        // })
+
+        // 利用jqueryForm插件来提交表单
+        $('#teacher-add-edit').ajaxForm(function(){
+            location.href = '/html/teacher/teacher_list.html';
         })
     }
     //编辑讲师功能

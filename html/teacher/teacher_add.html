@@ -28,7 +28,7 @@
             <li class="active">{{tc_id?'编辑讲师':'添加讲师'}}</li>
         </ol>
         <div class="teacher-add">
-            <form id="teacher-add-edit" action="" class="form-horizontal col-xs-offset-2">
+            <form id="teacher-add-edit" action="{{}tc_id?'/v6/teacher/update':'/v6/teacher/add'}" method="post" class="form-horizontal col-xs-offset-2">
                 <!--若果是讲师编辑,在提交表单的时候,需要这个id-->
                 {{if tc_id}}
                 <input type="hidden" name='tc_id' value="{{tc_id}}"> {{/if}}
