@@ -1,4 +1,4 @@
-define(['aside', 'header', 'nprogress', 'jquery', 'loading','template','jqueryForm'], function(undefined, undefined, nprogress, $, undefined,template,undefined) {
+define(['aside', 'header', 'nprogress', 'jquery', 'loading','template','jqueryForm','datepicker','datepickerCN'], function(undefined, undefined, nprogress, $, undefined,template,undefined,undefined,undefined) {
     /**
      * 这里的js作用于两个页面,一个是添加讲师页面,一个是编辑讲师页面
      * 1.获取页面查询字符串
@@ -29,6 +29,8 @@ define(['aside', 'header', 'nprogress', 'jquery', 'loading','template','jqueryFo
     function teacherAdd(){
         //把模板添加到坑中,因为是添加,只要传入一个空对象就可以,又因为是动态生成的表单,所有用事件委托的方式.
          $('.teacher').html(template('teacher-add-edit-tpl',{}));
+        //  模板渲染完毕后,就可以调用
+         initDatepicker()
         // $(document).on('submit','#teacher-add-edit',function(){
         //     $.post('/v6/teacher/add',$(this).serialize(),function(data){
         //          location.href = '/html/teacher/teacher_list.html';
@@ -45,7 +47,9 @@ define(['aside', 'header', 'nprogress', 'jquery', 'loading','template','jqueryFo
     function teacherEdit(){
         // 数据的回显
         $.get('/v6/teacher/edit',{tc_id:urlSearchObj.tc_id},function(data){
-            $('.teacher').html(template('teacher-add-edit-tpl',data.result))
+            $('.teacher').html(template('teacher-add-edit-tpl',data.result));
+            // 这个datepicker方法需要放在回到里面,因为要等待模板渲染完毕,才能获取到input的id
+            initDatepicker();
         })
         // 数据的提交,因为表单是动态生成的,所有使用委托的方式
         $(document).on('submit','#teacher-add-edit',function(){
@@ -55,5 +59,15 @@ define(['aside', 'header', 'nprogress', 'jquery', 'loading','template','jqueryFo
             return false;
         })
     }
+
+    // 添加日期初始化功能:使用datepicker插件
+    function initDatepicker(){
+        $('#datepicker-zh').datepicker({
+            language:'zh-CN',
+            endDate:new Date(),
+            format:'yyyy-mm-dd'
+        })
+    }
+
     nprogress.done();
 });

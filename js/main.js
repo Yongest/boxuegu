@@ -34,6 +34,7 @@ define([], function () {
 			template: 'lib/artTemplate/template-debug',
 			bootstrap: 'lib/bootstrap/js/bootstrap',
 			datepicker: 'lib/bootstrap-datepicker/js/bootstrap-datepicker',
+			datepickerCN:'lib/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min',
 			ckeditor: 'lib/ckeditor/ckeditor',
 			ckeditorLand: 'lib/ckeditor/lang/zh-cn',
 			echarts: 'lib/echarts/echarts.min',
@@ -49,6 +50,10 @@ define([], function () {
 			// bootstrap是非define定义的模块，又依赖与jquery，所以需要配置
 			bootstrap: {
 				deps: ['jquery']
+			},
+			// 因为datepickerCN是非define定义的,依赖于jquery,datepicker,所有需要配置依赖,而datapicker源码中已经define定义好了,已经写好依赖
+			datepickerCN:{
+				deps:['jquery','datepicker']
 			}
 		}
 
