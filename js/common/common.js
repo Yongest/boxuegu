@@ -46,4 +46,22 @@ define(['jquery', 'jqueryCookie'], function ($, undefined) {
     //         $('.overlay').hide();
     //     })
     // })();
+
+    // 对外暴露一个对象
+    return {
+        //把页面中的查询字符串转化成对象的形式
+        parseSearch:function(searchName){
+            var searchArr = location.search.slice(1).split('&');
+            var searchObj ={},tempArr;
+            for(var i =0,len=searchArr.length;i<len;i++){
+                tempArr = searchArr[i].split('=');
+                searchObj[tempArr[0]]=tempArr[1];
+            }
+            // searchObj.searchName==null?(return searchObj):(return srarchObj[searchName]);
+            // 若果没有传参数,则返回对象,有则,返回指定key对应value
+            //  对象中的变量必须要用[]才能访问到. .点的方式访问不到
+            // return (searchObj[searchName]==null)?searchObj:searchObj[searchName];
+            return (searchName==null)?searchObj:searchObj[searchName];
+        }
+    }
 });
