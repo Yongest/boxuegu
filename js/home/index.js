@@ -1,4 +1,4 @@
-define(['jquery','common','header','aside','nprogress','loading'], function($,undefined,undefined,undefined,nprogress,undefined) {
+define(['jquery','common','header','aside','nprogress','loading'], function($,undefined,Header,undefined,nprogress,undefined) {
     // $.ajax({
     //     type:'post',
     //     // url:'http://api.botue.com/v6/login',
@@ -12,6 +12,8 @@ define(['jquery','common','header','aside','nprogress','loading'], function($,un
     //     }
 
     // })
-
+    
+    //退出功能
+    new Header().logout;
     nprogress.done();
 });
