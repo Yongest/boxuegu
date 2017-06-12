@@ -43,6 +43,7 @@ define([], function () {
 			jqueryForm: 'lib/jquery-form/jquery.form',
 			jqueryRegion: 'lib/jquery-region/jquery.region',
 			nprogress: 'lib/nprogress/nprogress',
+			uploadify:'lib/uploadify/jquery.uploadify'
 		},
 
 		shim: {
@@ -58,6 +59,9 @@ define([], function () {
 			//这个富文本编辑器没有依赖,也是非defined定义的模块,这个模块暴露了一个全局变量CKEDITOR.
 			ckeditor:{
 				exports:'CKEDITOR'
+			},
+			uploadify:{
+				deps:['jquery']
 			}
 		}
 

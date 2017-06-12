@@ -1,4 +1,4 @@
-define(['jquery','common','header','aside','nprogress','loading','template','jqueryForm','datepicker','datepickerCN','ckeditor','jqueryRegion'], function($,undefined,undefined,undefined,nprogress,undefined,template,undefined,undefined,undefined,ckeditor,undefined) {
+define(['jquery','common','header','aside','nprogress','loading','template','jqueryForm','datepicker','datepickerCN','ckeditor','jqueryRegion','uploadify'], function($,undefined,undefined,undefined,nprogress,undefined,template,undefined,undefined,undefined,ckeditor,undefined,undefined) {
     
     var edit=null;//全局变量.ckeditor 的实例.
     //个人中心数据回显
@@ -7,18 +7,33 @@ define(['jquery','common','header','aside','nprogress','loading','template','jqu
             $('#settings-item').html(template('settings-form-tpl'),data);
             //模板渲染之后再调用方法
             modify();
+            //日期选择器功能
             $('.datepicker-input').datepicker({
                 language:'zh-CN',
                 endDate:new Date(),
                 format:'yyyy-mm-dd'
             });
+            //富文本编辑功能
             edit = ckeditor.replace('ckeditor',{
                 toolbarGroups:{//配置文件
                     name:'styles'
                 }
             });
+            // 省,市,县三级联动功能
             $('#region').region({
                 url:'/lib/jquery-region/region.json'
+            });
+            //文件上传功能
+            $('#upfile').uploadify({
+                swf:'/lib/uploadify/uploadify.swf',
+                uploadify:'/v6/uploader/avatar',
+                fileObjName:'tc_avatar',
+                buttonText:'',
+                height:$('.preview').height(),
+                onUploadSuccess:function(file,data,response){
+                    //短路运算符,防止data没有而报错.
+                   data && $('.preview img').attr('src',JSON.parse(data.result.path));
+                }
             })
         }
     });
