@@ -54,6 +54,10 @@ define([], function () {
 			// 因为datepickerCN是非define定义的,依赖于jquery,datepicker,所有需要配置依赖,而datapicker源码中已经define定义好了,已经写好依赖
 			datepickerCN:{
 				deps:['jquery','datepicker']
+			},
+			//这个富文本编辑器没有依赖,也是非defined定义的模块,这个模块暴露了一个全局变量CKEDITOR.
+			ckeditor:{
+				exports:'CKEDITOR'
 			}
 		}
 
