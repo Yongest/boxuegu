@@ -1,12 +1,13 @@
 define(['jquery', 'common', 'header', 'aside', 'nprogress', 'loading', 'template', 'jqueryForm', 'ckeditor', 'uploadify'], function ($, common, undefined, undefined, nprogress, undefined, template, undefined, undefined, undefined) {
 
     function initAddAside() {
-        $('.forwards a').removeClass('active').first().next().addClass('active');
+        $('.forwards a').removeClass('active').first().eq(1).addClass('active');
     }
     var csId = common.parseSearch('cs_id');
     $.get('/v6/course/picture', { cs_id: csId }, function (data) {
         (data.code == 200) && ($('.steps').html(template('add-step2-tpl', data.result))) && (initAddAside());
-        // 文件上传功能放在这里面
+         initAddAside();
+         // 文件上传功能放在这里面
         uploadFile();
     })
 

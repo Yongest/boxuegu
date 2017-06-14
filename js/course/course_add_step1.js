@@ -6,7 +6,7 @@ define(['jquery', 'common', 'header', 'aside', 'nprogress', 'loading', 'template
 	//获取查询字符串cs_id
     var csId= common.parseSearch('cs_id');
     //数据的回显
-    $.get('//v6/course/basic',{
+    $.get('/v6/course/basic',{
         csid:csId
     },function(data){
         if(data.code==200){
