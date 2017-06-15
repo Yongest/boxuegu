@@ -6,16 +6,16 @@ define(['bootstrap','jquery', 'common', 'header', 'aside', 'nprogress', 'loading
      * 3.1 点击编辑,弹出模态框,回显数据.
      * 3.2 点击添加按钮,弹出模态框,添加数据.
      */
- function initAddAside() {
-        $('.forwards a').removeClass('active').first().last().addClass('active');
+    function initAddAside() {
+        $('.forwards a').removeClass('active').last().addClass('active');
     }
      var csId= common.parseSearch('cs_id');
     //数据的回显
     $.get('/v6/course/lesson',{
-        csid:csId
+        cs_id:csId
     },function(data){
         if(data.code==200){
-            $('.steps').html(template('add-step1-tpl',data.result));
+            $('.steps').html(template('add-step3-tpl',data.result));
             initAddAside();
         }
     })

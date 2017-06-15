@@ -58,10 +58,13 @@ define(['jquery','jqueryCookie','template'],function($,undefined,template){
 
     var pathHref = {
        '/html/teacher/teacher_add.html': '/html/teacher/teacher_list.html',
-       '/html/user/user_profile.html':'/html/user/user_list.html'
+       '/html/user/user_profile.html':'/html/user/user_list.html',
+        '/html/course/course_add_step1.html': '/html/course/course-add.html',
+        '/html/course/course_add_step2.html': '/html/course/course-add.html',
+        '/html/course/course_add_step3.html': '/html/course/course-add.html'
     }
     var pathName = location.pathname;
     var aHref = pathHref[pathName]?pathHref[pathName]:pathName;
-    $('.navs a').removeClass('active').filter('[href="'+aHref+'"]').addClass('active');
+    $('.navs a').removeClass('active').filter('[href="'+aHref+'"]').addClass('active').parentsUntil('.navs').show();
    })();
 });

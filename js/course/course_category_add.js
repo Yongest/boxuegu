@@ -39,7 +39,7 @@ define(['jquery','common','header','aside','nprogress','loading','template','jqu
             delegation:true,
             success:function(data){
                 if(data.code==200){
-                    location.href = '/html/course/category_list.html';
+                    location.href = '/html/course/course_list.html';
                 }
             }
         })

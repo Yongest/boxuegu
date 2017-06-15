@@ -7,10 +7,11 @@ define(['jquery','common','header','aside','nprogress','loading','template'], fu
         return Math.ceil(Math.random()*(params[1]-params[0])+params[0])
     })
     // 渲染课程列表
-    $('#course-items').append(template('course-list-tpl'),{})
+    // $('#course-items').append(template('course-list-tpl'),{})
     $.get('/v6/course',function(data){
         if(data.code ==200){
-            $('#course-items').append(template('course-list-tpl'),data)
+            console.log(111);
+            $('#course-items').append(template('course-list-tpl',data))
         }
     })
     

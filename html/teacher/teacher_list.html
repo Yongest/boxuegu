@@ -51,7 +51,7 @@
                             </tr>
                         </thead>
                         <!--这是tbody的坑-->
-                        <tbody class="table-teacher-list">
+                        <!--<tbody class="table-teacher-list">
                             <tr>
                                 <td>1</td>
                                 <td>赵丽颖</td>
@@ -66,7 +66,7 @@
                                     <a href="javascript:;" data-teacher-id="8" data-teacher-status="0" class="btn btn-warning btn-xs teacher-handle">注 销</a>
                                 </td>
                             </tr>
-                        </tbody>
+                        </tbody>-->
                     </table>
                 </div>
             </div>
@@ -77,67 +77,58 @@
     <div class="modal fade" id="teacherModal">
         <!--模态框讲师view 的坑-->
     </div>
+    <!--tbody 的模板-->
     <script type="text/tpl" id="teacher-view-tpl">    
-          <div class="modal-dialog" style="width: 750px;">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="panel-title">讲师信息</h4>
-                </div>
-                <div class="panel-body">
-                    <table class="table table-bordered table-condensed">
-                        <tbody>
-                            <tr>
-                                <th>姓名:</th>
-                                <td>{{tc_name}}</td>
-                                <th>职位:</th>
-                                <td colspan="3">{{tc_roster}}</td>
-                                <td rowspan="4" width="128">
-                                    <div class="avatar">
-                                        <img src={{tc_avatar?tc_avatar:"http://static.botue.com/images/avatar/5861fd014b193.jpg"}} alt="">
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>花名:</th>
-                                <td>{{tc_roster}}</td>
-                                <th>出生日期:</th>
-                                <td colspan="3">{{tc_birthday}}</td>
-                            </tr>
-                            <tr>
-                                <th>性别:</th>
-                                <td>{{tc_gender==0?'女':'男'}}</td>
-                                <th>入职日期:</th>
-                                <td colspan="3">{{tc_join_date}}</td>
-                            </tr>
-                            <tr>
-                                <th>手机号码:</th>
-                                <td colspan="2">{{tc_cellphone}}</td>
-                                <th>邮箱:</th>
-                                <td colspan="2">{{tc_email}}</td>
-                            </tr>
-                            <tr>
-                                <th>籍贯:</th>
-                                
-                                <td colspan="6">{{tc_hometown?tc_hometown:'湖南省 看源码 看源码'}}本来是这样:tc_hometown.split('|').join(' ')</td>
-                            </tr>
-                            <tr>
-                                <td colspan="7">
-                                    <div class="introduce">
-                                        {{tc_introduce}}
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+        <tbody>
+            <tr>
+                <th>姓名:</th>
+                <td>{{tc_name}}</td>
+                <th>职位:</th>
+                <td colspan="3">{{tc_roster}}</td>
+                <td rowspan="4" width="128">
+                    <div class="avatar">
+                        <img src={{tc_avatar?tc_avatar:"http://static.botue.com/images/avatar/5861fd014b193.jpg"}} alt="">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>花名:</th>
+                <td>{{tc_roster}}</td>
+                <th>出生日期:</th>
+                <td colspan="3">{{tc_birthday}}</td>
+            </tr>
+            <tr>
+                <th>性别:</th>
+                <td>{{tc_gender==0?'女':'男'}}</td>
+                <th>入职日期:</th>
+                <td colspan="3">{{tc_join_date}}</td>
+            </tr>
+            <tr>
+                <th>手机号码:</th>
+                <td colspan="2">{{tc_cellphone}}</td>
+                <th>邮箱:</th>
+                <td colspan="2">{{tc_email}}</td>
+            </tr>
+            <tr>
+                <th>籍贯:</th>
+                
+                <td colspan="6">{{tc_hometown?tc_hometown:'湖南省 看源码 看源码'}}本来是这样:tc_hometown.split('|').join(' ')</td>
+            </tr>
+            <tr>
+                <td colspan="7">
+                    <div class="introduce">
+                        {{tc_introduce}}
+                    </div>
+                </td>
+            </tr>
+        </tbody>
     </script>
+
+    <!--模态框的模板-->
     <script id="teacher-list-tpl" type="text/tpl">
         {{each result as value index}}
         <tr>
-            <td>{{index+2}}</td>
+            <td>{{index+1}}</td>
             <td>{{value.tc_name}}</td>
             <td>{{value.tc_roster}}</td>
             <td>{{value.tc_birthday}}</td>

@@ -65,10 +65,10 @@
     {{each result as course i}}
         <div class="course">
             <div class="pic">
-                <img src={{course.cs_cove?course.cs_cove:'/img/default.jpg'}} alt="">
+                <img src={{course.cs_cover?course.cs_cover:'/img/default.png'}} alt="">
             </div>
             <div class="info">
-                <a href="javascript:;">html,div+css视频教程(2014最新,带多个企业级项目实战)</a>
+                <a href="/html/course/course_add_step1.html?cs_id={{ course.cs_id }}">{{ course.cs_name }}</a>
                 <ul class="list-unstyled">
                     <li>
                         <span>讲师：{{course.tc_name}}</span>

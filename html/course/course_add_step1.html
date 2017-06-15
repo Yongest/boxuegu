@@ -57,7 +57,7 @@
                     <div class="col-xs-8">
                         <select name="cs_tc_id" class="form-control input-sm">
                             {{each teacher}}
-                            <option value="{{$value.cs_tc_id}}" {{cs_tc_id==$value.tc_id?'selected':''}}>{{$value.tc_name}}</option>
+                            <option value="{{$value.tc_id}}" {{cs_tc_id==$value.tc_id?'selected':''}}>{{$value.tc_name}}</option>
                             {{/each}}
                         </select>
                     </div>
@@ -65,12 +65,12 @@
                 <div class="form-group">
                     <label for="" class="col-xs-2 control-label">分类</label>
                     <div class="col-xs-8">
-                        <select id="cg-parent" name="cs_cg_id" class="form-control input-sm">
+                        <select id="cg-parent" name="" class="form-control input-sm">
                             {{each category.top}}
                             <option value="{{$value.cg_id}}" {{cs_cg_pid==$value.cg_id?'seleted':''}}>{{$value.cg_name}}</option>
                             {{/each}}
                         </select>
-                        <select name="cg_id" class="form-control input-sm">
+                        <select id="cg-children" name="cs_cg_id" class="form-control input-sm">
                             {{each category.child}}
                             <option id="cg-children" value="{{$value.cg_id}}" {{cs_cg_id==$value.cg_id?'selected':''}}>{{$value.cg_name}}</option>
                             {{/each}}

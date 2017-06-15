@@ -43,7 +43,8 @@ define([], function () {
 			jqueryForm: 'lib/jquery-form/jquery.form',
 			jqueryRegion: 'lib/jquery-region/jquery.region',
 			nprogress: 'lib/nprogress/nprogress',
-			uploadify:'lib/uploadify/jquery.uploadify'
+			uploadify:'lib/uploadify/jquery.uploadify',
+			jcrop: 'lib/Jcrop/js/Jcrop'
 		},
 
 		shim: {
@@ -61,6 +62,9 @@ define([], function () {
 				exports:'CKEDITOR'
 			},
 			uploadify:{
+				deps:['jquery']
+			},
+			jcrop :{
 				deps:['jquery']
 			}
 		}

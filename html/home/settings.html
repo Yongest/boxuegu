@@ -36,7 +36,7 @@
             <div class="form-group">
                 <label for="" class="col-xs-3 control-label">头像</label>
                 <div class="col-xs-2 preview">
-                    <img src={{tc_avatar?tc_avatar:'/img/default.jpg'}}>
+                    <img src={{tc_avatar?tc_avatar:'/img/default.png'}}>
                     <input type="file" id="upfile">
                     <div class="cover">
                         <i class="fa fa-upload"></i>
@@ -95,7 +95,7 @@
             <div class="form-group">
                 <label for="" class="col-xs-3 control-label">入职日期</label>
                 <div class="col-xs-5">
-                    <input name="tc_join_date" value="tc_join_date" type="text" class="form-control input-sm datepicker-input">
+                    <input name="tc_join_date" value="{{tc_join_date}}" type="text" class="form-control input-sm datepicker-input">
                 </div>
             </div>
             <div class="form-group">

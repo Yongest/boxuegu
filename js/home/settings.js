@@ -1,10 +1,10 @@
-define(['jquery','common','header','aside','nprogress','loading','template','jqueryForm','datepicker','datepickerCN','ckeditor','jqueryRegion','uploadify'], function($,undefined,undefined,undefined,nprogress,undefined,template,undefined,undefined,undefined,ckeditor,undefined,undefined) {
+define(['jqueryCookie','jquery','common','header','aside','nprogress','loading','template','jqueryForm','datepicker','datepickerCN','ckeditor','jqueryRegion','uploadify'], function(undefined,$,undefined,undefined,undefined,nprogress,undefined,template,undefined,undefined,undefined,ckeditor,undefined,undefined) {
     
     var edit=null;//全局变量.ckeditor 的实例.
     //个人中心数据回显
 	$.get('/v6/teacher/profile',function(data){
         if(data.code==200){
-            $('#settings-item').html(template('settings-form-tpl'),data);
+            $('#settings-item').html(template('settings-form-tpl',data.result));
             //模板渲染之后再调用方法
             modify();
             //日期选择器功能
@@ -15,24 +15,43 @@ define(['jquery','common','header','aside','nprogress','loading','template','jqu
             });
             //富文本编辑功能
             edit = ckeditor.replace('ckeditor',{
-                toolbarGroups:{//配置文件
-                    name:'styles'
-                }
+                toolbarGroups:[//配置文件
+                    { name: 'styles' }
+                ]
             });
             // 省,市,县三级联动功能
             $('#region').region({
                 url:'/lib/jquery-region/region.json'
             });
-            //文件上传功能
+            //文件上传功能.
             $('#upfile').uploadify({
                 swf:'/lib/uploadify/uploadify.swf',
-                uploadify:'/v6/uploader/avatar',
+                uploader:'/v6/uploader/avatar',
                 fileObjName:'tc_avatar',
-                buttonText:'',
+                buttonText:'<i></i>',
                 height:$('.preview').height(),
                 onUploadSuccess:function(file,data,response){
-                    //短路运算符,防止data没有而报错.
-                   data && $('.preview img').attr('src',JSON.parse(data.result.path));
+                    try {
+						data = JSON.parse(data);
+					}catch(e) {
+						data = {};
+					}
+                    // 图片上传成功后，更新页面头像，同时更新本地cookie记录
+                    if(data.code==200){
+
+                        $('.preview img').attr('src',data.result.path);
+                        $('.img-circle img').attr('src',data.result.path)
+                          /*
+						 * 1、获取userInfo这个cookie字符串值
+						 * 2、解析为对象
+						 * 3、设置对象的tc_avatar值为新的地址
+						 * 4、把对象转换为字符串保存到cookie中
+						 * */
+                        var userInfoObj = JSON.parse($.cookie('userInfo') || '{}');
+						userInfoObj.tc_avatar = data.result.path;
+						$.cookie('userInfo', JSON.stringify(userInfoObj), { path: '/' });
+                    }
+            
                 }
             })
         }
@@ -63,7 +82,7 @@ define(['jquery','common','header','aside','nprogress','loading','template','jqu
             })
             // 阻止表单默认行为,自动刷新
             return false;
-         })
+         });
     }
 
     nprogress.done();
